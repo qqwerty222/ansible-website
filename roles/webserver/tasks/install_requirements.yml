@@ -1,0 +1,16 @@
+- name: Update repositories
+  apt:
+    update_cache: yes
+
+- name: Install python
+  apt: 
+    pkg:
+      - python3
+      - python3-pip
+      - python3-virtualenv
+
+- name: Install python packages
+  pip:
+    requirements: /www/api_website/requirements.txt
+    virtualenv: /www/api_website/env
+    

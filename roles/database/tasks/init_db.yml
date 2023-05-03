@@ -1,0 +1,9 @@
+- name: Generate init script from template
+  template:
+    src: init_schema.sql.j2
+    dest: /tmp/init_schema.sql
+
+- name: Run mysql init script
+  shell: mysql < /tmp/init_schema.sql && rm /tmp/init_schema.sql
+  
+

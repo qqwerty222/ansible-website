@@ -1,0 +1,7 @@
+- name: Deploy project
+  hosts: webserver
+  remote_user: ubuntu
+  become: true
+  roles: 
+    - webserver
+ 

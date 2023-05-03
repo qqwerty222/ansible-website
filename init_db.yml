@@ -1,0 +1,7 @@
+---
+- name: Prepare database
+  hosts: db
+  remote_user: ubuntu
+  become: true
+  roles:
+    - database

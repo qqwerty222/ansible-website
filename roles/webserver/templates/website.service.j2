@@ -1,0 +1,23 @@
+[Unit]
+Description=website daemon
+Requires=website.socket
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/www/api_website
+ExecStart= \
+        export DB_HOST={{ db_host }} \
+        export DB_USER={{ db_user }} \
+        export DB_PASS={{ db_pass }} && \
+        
+        /www/api_website/env/bin/gunicorn \
+          --access-logfile /var/log/gunicorn/access.log \
+          --error-logfile /var/log/gunicorn/error.log \
+          --workers 10 \
+          --bind 0.0.0.0:8000 \
+          wsgi:app
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+- name: Create website socket config file
+  template: 
+    src: website.socket.j2
+    dest: /etc/systemd/system/website.socket
+
+- name: Create website service config file
+  template: 
+    src: website.service.j2
+    dest: /etc/systemd/system/website.service
+
+- name: Create directory for gunicorn logs
+  file: 
+    path: /var/log/gunicorn
+    state: directory
+
+- name: Start website service
+  systemd:
+    name: website.socket
+    state: started
+    enabled: yes
+
+- name: Try to reach website on localhost
+  ansible.builtin.uri:
+    url: http://127.0.0.1/
+    return_content: yes

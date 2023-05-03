@@ -1,0 +1,3 @@
+--- 
+db_user: "{{ lookup('env', 'DB_USER') }}"
+db_pass: "{{ lookup('env', 'DB_PASS') }}"

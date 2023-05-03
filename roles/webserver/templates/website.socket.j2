@@ -1,0 +1,8 @@
+[Unit]
+Description=Socket for website deployed using gunicorn
+
+[Socket]
+ListenStream=0.0.0.0:8000
+
+[Install]
+WantedBy=sockets.target
